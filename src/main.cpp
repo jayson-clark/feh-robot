@@ -1,7 +1,12 @@
-#include "Example/ExampleCLass.h"
+#include <FEHLCD.h>
 
 int main()
 {
-    ExampleClass ex;
-    ex.mainLoop();
+    LCD.WriteLine("Hello World!");
+    while (1)
+    {
+#ifdef SIMULATOR
+        LCD.Update();
+#endif
+    }
 }
