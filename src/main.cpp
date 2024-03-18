@@ -45,8 +45,8 @@ int main() {
         txt->handleInput(event);
 
         if (txt->hasUpdate) {
-            txt->update(dt);
-            txt->layout(DeltaTime::fromMilliseconds(10));  // Dummy DeltaTime
+            txt->update(DeltaTime::fromMilliseconds(10)); // Dummy DeltaTime
+            txt->layout();
 
             txt->draw();
 
