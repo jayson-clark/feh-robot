@@ -1,5 +1,6 @@
 #include <FEHLCD.h>
 
+#include "GUI/Widgets/Base/WidgetWithChild.h"
 #include "GUI/Widgets/Content/Text.h"
 
 int main() {
@@ -31,10 +32,20 @@ int main() {
             },
     };
 
+    WidgetProperties propExample1 = {
+        .x = 100,
+        .y = 150,
+    };
+
     Text *txt = new Text("Hello World!", propExample);
+    WidgetWithChild *ex = new WidgetWithChild(new Text("Widget with child"), propExample1);
 
     LCD.Clear();
+    txt->layout();
+    ex->layout();
+
     txt->draw();
+    ex->draw();
 
     while (true) {
         float x, y;
@@ -43,12 +54,17 @@ int main() {
             InputProcessor::getInstance()->processInput(x, y, pressed);
 
         txt->handleInput(event);
+        ex->handleInput(event);
 
         if (txt->hasUpdate) {
-            txt->update(DeltaTime::fromMilliseconds(10)); // Dummy DeltaTime
+            txt->update(DeltaTime::fromMilliseconds(10));  // Dummy DeltaTime
             txt->layout();
 
+            ex->update(DeltaTime::fromMilliseconds(10)); // Dummy DeltaTime
+            ex->layout();
+
             txt->draw();
+            ex->draw();
 
 #ifdef SIMULATOR
             LCD.Update();
