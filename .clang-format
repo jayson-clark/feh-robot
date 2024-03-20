@@ -2,4 +2,8 @@
 Language:        Cpp
 BasedOnStyle:    Google
 IndentWidth:     4
-AllowShortLambdasOnASingleLine: None
+AllowShortLambdasOnASingleLine: Empty
+BinPackParameters: false
+BinPackArguments: false
+AllowAllArgumentsOnNextLine: true
+AlignAfterOpenBracket: AlwaysBreak
