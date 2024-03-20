@@ -21,7 +21,7 @@ struct WidgetProperties
     int borderWidth = 0;              // No border by default
     Color borderColor = Color(WHITE); // Default white border color
 
-    int padding = 6; // Default padding
+    int padding = 0; // Default padding
 
     // Event callbacks
     std::function<void(Widget *, InputEvent)> onPress = [](Widget *self, InputEvent event) {};

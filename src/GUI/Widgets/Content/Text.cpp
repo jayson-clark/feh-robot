@@ -8,6 +8,9 @@ Text::Text(std::string text, WidgetProperties prop) : Widget(prop) {
 
     if (properties.height == 0)
         properties.height = CHAR_HEIGHT + properties.padding * 2;
+
+    if (properties.padding == 0)
+        properties.padding = 6;  // Default to 6 if not specified
 }
 
 void Text::draw() const {
