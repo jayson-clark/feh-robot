@@ -9,17 +9,22 @@
 
 class HomePage : public WidgetWithChildren {
    public:
-    HomePage(WidgetProperties prop = {});
+    HomePage();
 };
 
-class Page1 : public WidgetWithChildren {
+class PIDPage : public WidgetWithChildren {
    public:
-    Page1(WidgetProperties prop = {});
+    PIDPage();
 };
 
-class Page2 : public WidgetWithChildren {
+class SensorsPage : public WidgetWithChildren {
    public:
-    Page2(WidgetProperties prop = {});
+    SensorsPage();
+};
+
+class SequencesPage : public WidgetWithChildren {
+   public:
+    SequencesPage();
 };
 
 void initializeRoutes();
