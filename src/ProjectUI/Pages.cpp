@@ -47,39 +47,18 @@ HomePage::HomePage() : WidgetWithChildren({}, {}) {
 }
 
 PIDPage::PIDPage() : WidgetWithChildren({}, {}) {
-    children.push_back(new Text(
-        "Home",
-        WidgetProperties{
-            .borderWidth = 1,
-            .onPress =
-                [](Widget*, InputEvent) {
-                    Router::getInstance().redirect("/");
-                },
-        }));
+    HeaderWidget* header = new HeaderWidget("PID");
+    children.push_back(header);
 }
 
 SensorsPage::SensorsPage() : WidgetWithChildren({}, {}) {
-    children.push_back(new Text(
-        "Home",
-        WidgetProperties{
-            .borderWidth = 1,
-            .onPress =
-                [](Widget*, InputEvent) {
-                    Router::getInstance().redirect("/");
-                },
-        }));
+    HeaderWidget* header = new HeaderWidget("Sensors");
+    children.push_back(header);
 }
 
 SequencesPage::SequencesPage() : WidgetWithChildren({}, {}) {
-    children.push_back(new Text(
-        "Home",
-        WidgetProperties{
-            .borderWidth = 1,
-            .onPress =
-                [](Widget*, InputEvent) {
-                    Router::getInstance().redirect("/");
-                },
-        }));
+    HeaderWidget* header = new HeaderWidget("Sequences", new Text("Go"));
+    children.push_back(header);
 }
 
 void initializeRoutes() {

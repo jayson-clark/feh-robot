@@ -6,6 +6,7 @@
 #include "GUI/Widgets/Container/Column.h"
 #include "GUI/Widgets/Container/Row.h"
 #include "GUI/Widgets/Content/Text.h"
+#include "ProjectUI/Widgets/Header.h"
 
 class HomePage : public WidgetWithChildren {
    public:
