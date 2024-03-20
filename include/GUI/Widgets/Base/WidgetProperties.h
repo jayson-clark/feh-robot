@@ -19,7 +19,7 @@ struct WidgetProperties
     Color foregroundColor = Color(WHITE); // Default white foreground
 
     int borderWidth = 0;              // No border by default
-    Color borderColor = Color(BLACK); // Default white border color
+    Color borderColor = Color(WHITE); // Default white border color
 
     int padding = 6; // Default padding
 
