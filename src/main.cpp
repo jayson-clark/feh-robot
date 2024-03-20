@@ -1,74 +1,32 @@
 #include <FEHLCD.h>
 
-#include "GUI/Widgets/Base/WidgetWithChild.h"
-#include "GUI/Widgets/Content/Text.h"
+#include "GUI/Routing/Router.h"
+#include "ProjectUI/Pages.h"
 
 int main() {
-    WidgetProperties propExample = {
-        .x = 30,
-        .y = 30,
-        .width = 200,
-        .height = 100,
-        .foregroundColor = Color(255, 0, 0),
-        .borderWidth = 1,
-        .borderColor = Color(0, 255, 0),
-        .onPress =
-            [](Widget *self, InputEvent e) {
-                LCD.WriteLine("Pressed.");
-            },
-        .onRelease =
-            [](Widget *self, InputEvent e) {
-                LCD.WriteLine("Released.");
-            },
-        .onEnter =
-            [](Widget *self, InputEvent e) {
-                self->properties.foregroundColor = GREEN;
-                self->hasUpdate = true;
-            },
-        .onLeave =
-            [](Widget *self, InputEvent e) {
-                self->properties.foregroundColor = RED;
-                self->hasUpdate = true;
-            },
-    };
-
-    WidgetProperties propExample1 = {
-        .x = 100,
-        .y = 150,
-    };
-
-    Text *txt = new Text("Hello World!", propExample);
-    WidgetWithChild *ex = new WidgetWithChild(new Text("Widget with child"), propExample1);
-
-    LCD.Clear();
-    txt->layout();
-    ex->layout();
-
-    txt->draw();
-    ex->draw();
+    initializeRoutes();
 
     while (true) {
-        float x, y;
-        bool pressed = LCD.Touch(&x, &y);
-        InputEvent event =
-            InputProcessor::getInstance()->processInput(x, y, pressed);
+        Router &router = Router::getInstance();
+        Route *route = router.getCurrentRoute();
 
-        txt->handleInput(event);
-        ex->handleInput(event);
+        route->update(DeltaTime::fromMilliseconds(10));
+        route->layout();
+        route->draw();
 
-        if (txt->hasUpdate) {
-            txt->update(DeltaTime::fromMilliseconds(10));  // Dummy DeltaTime
-            txt->layout();
-
-            ex->update(DeltaTime::fromMilliseconds(10)); // Dummy DeltaTime
-            ex->layout();
-
-            txt->draw();
-            ex->draw();
+        router.hasUpdate = false;
 
 #ifdef SIMULATOR
-            LCD.Update();
+        LCD.Update();
 #endif
+
+        while (!router.hasUpdate) {
+            float x, y;
+            bool pressed = LCD.Touch(&x, &y);
+            InputEvent event =
+                InputProcessor::getInstance()->processInput(x, y, pressed);
+
+            route->handleInput(event);
         }
     }
 }
