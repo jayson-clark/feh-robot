@@ -1,11 +1,6 @@
-# Proteus Template Project
+# Team D6 Robot Code
 
-This project provides a template for developing software with the Proteus platform. It includes an example class, installation scripts, and build instructions for both a simulator environment and the physical Proteus hardware. The proteus platform is a proprietary platform used throughout The Ohio State University FEH program. This project allows for more organized code and allows for one codebase to be compiled to both the simulator and physical proteus.
-
-This is done by replacing the default makefiles with modified versions. If you would like to add additional modified files, put them inside of the `install_scripts/mod_files` directory. Header files should be placed inside of the `include` directory in the root of the project. Source files should be placed inside of the `src` directory.
-
-The templates and documentation provided by OSU can be found [here](http://https://u.osu.edu/fehproteus/ "here").
-
+This project houses the source code for controlling our robot.
 
 ## Installation
 
