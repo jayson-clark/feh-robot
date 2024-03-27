@@ -4,7 +4,7 @@ StepperWidget::StepperWidget(std::vector<std::string> strings) : Row({}, {}) {
     if (strings.empty()) return;  // Require at least one string
 
     int* index = new int(0);
-    Text* valueText = new Text(strings[*index]);
+    Text* valueText = new Text(strings[*index], {.width = 240});
 
     Text* leftArrow = new Text("<");
     leftArrow->properties.onPress = [this, valueText, index, strings](
