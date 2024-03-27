@@ -51,11 +51,15 @@ float PIDController::PIDAdjustment() {
 
     // Update the motor power
     currentMotorPower += P + I + D;
+
     if (std::isnan(currentMotorPower)) currentMotorPower = DEFAULT_MOTOR_POWER;
 
+    sum += currentMotorPower;
+    updates += 1;
+
     // Ensure motor power is no greater than MAX_MOTOR_POWER
-    currentMotorPower =
-        std::clamp(currentMotorPower, -MAX_MOTOR_POWER, MAX_MOTOR_POWER);
+    currentMotorPower = std::max(
+        -MAX_MOTOR_POWER, std::min(currentMotorPower, MAX_MOTOR_POWER));
 
     return currentMotorPower;
 }
