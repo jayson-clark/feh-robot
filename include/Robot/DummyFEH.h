@@ -109,6 +109,4 @@ class FEHRCS {
     int _region;
 };
 
-extern FEHRCS RCS;
-
 #endif  // DUMMY_FEH

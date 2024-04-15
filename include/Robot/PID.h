@@ -17,8 +17,7 @@
 // Definitions of constants
 constexpr float INCHES_PER_COUNT = (2 * M_PI * 1.5f) / 318.0f;
 constexpr float DEFAULT_MOTOR_POWER = 25.0f;
-constexpr float MAX_MOTOR_POWER = 45.0f;
-constexpr float MIN_UPDATE_INTERVAL = 0.01f;  // Seconds
+constexpr float MAX_MOTOR_POWER = 50.0f;
 
 // PID Controller structure
 struct PIDController {
@@ -28,12 +27,8 @@ struct PIDController {
 
     float sumError, prevError;
     double prevTime;
-    float startTime;
     int prevCounts;
     float currentMotorPower;
-
-    float updates = 0;
-    float sum = 0;
 
     PIDController(
         float Kp,

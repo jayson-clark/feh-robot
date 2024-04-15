@@ -16,7 +16,6 @@ PIDController::PIDController(
       sumError(0),
       prevError(0),
       prevTime(TimeNow()),
-      startTime(-1),
       prevCounts(encoder.Counts()),
       currentMotorPower(DEFAULT_MOTOR_POWER) {}
 
@@ -26,12 +25,13 @@ void PIDController::ResetPIDVariables() {
     sumError = prevError = 0;
     prevCounts = encoder.Counts();
     prevTime = TimeNow();
-    startTime = -1;
     currentMotorPower = DEFAULT_MOTOR_POWER;
 }
 
 float PIDController::PIDAdjustment() {
-    float deltaCounts = encoder.Counts() - prevCounts;
+    float currentCounts = encoder.Counts();
+    float deltaCounts = currentCounts - prevCounts;
+
     float deltaTime = TimeNow() - prevTime;
 
     // Calculate error
@@ -47,15 +47,10 @@ float PIDController::PIDAdjustment() {
     // Store values for the next adjustment
     prevError = error;
     prevTime = TimeNow();
-    prevCounts += deltaCounts;
+    prevCounts = currentCounts;
 
     // Update the motor power
     currentMotorPower += P + I + D;
-
-    if (std::isnan(currentMotorPower)) currentMotorPower = DEFAULT_MOTOR_POWER;
-
-    sum += currentMotorPower;
-    updates += 1;
 
     // Ensure motor power is no greater than MAX_MOTOR_POWER
     currentMotorPower = std::max(

@@ -8,6 +8,7 @@
 #include "GUI/Widgets/Content/Text.h"
 #include "ProjectUI/Widgets/Header.h"
 #include "ProjectUI/Widgets/Stepper.h"
+#include "Robot/Robot.h"
 
 class HomePage : public WidgetWithChildren {
    public:
@@ -19,11 +20,21 @@ class PIDPage : public WidgetWithChildren {
     PIDPage();
 
    private:
-    float Kp = 0;
-    float Ki = 0;
-    float Kd = 0;
+    float Kp = dKp;
+    float Ki = dKi;
+    float Kd = dKd;
 
+    int sample_rate = dSAMPLE_RATE;
     int inches = 12;
+};
+
+class TurnPage : public WidgetWithChildren {
+   public:
+    TurnPage();
+
+   private:
+    int counts = 34;
+    int reps = 6;
 };
 
 class SensorsPage : public WidgetWithChildren {

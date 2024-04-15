@@ -18,8 +18,10 @@ HomePage::HomePage() : WidgetWithChildren({}, {}) {
     Text* pidBtn = new Text("PID", btnProp("/pid"));
     Text* sensorsBtn = new Text("Sensors", btnProp("/sensors"));
     Text* sequencesBtn = new Text("Sequences", btnProp("/sequences"));
+    Text* batteryVoltage = new Text("Turns", btnProp("/turns"));
 
-    col->children = {new Row({pidBtn, sensorsBtn}), new Row({sequencesBtn})};
+    col->children = {
+        new Row({pidBtn, sensorsBtn}), new Row({sequencesBtn, batteryVoltage})};
     col->layout();
 
     children = {col};
